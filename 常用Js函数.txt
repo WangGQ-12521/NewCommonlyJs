@@ -1,0 +1,17 @@
+//传入表头名，与ccode。变更ccode的值为日期加3位流水
+function changecode(Tname,code){
+    var codelen=code.length;
+    var str = code.substring(codelen-3,codelen);
+    var date=LoginInfo[0].ServerDate;
+    var datestr=date.substr(0,4) + date.substr(5,2) + date.substr(8,2)
+    var ccode=datestr+str;
+    ExecuteSql("update "+Tname+" set ccode="+ccode+" where iid='"+HeadID+"'",function(result){
+        if(result==""){
+            //alert(SuccessfulMsg);
+        }
+        else{
+            alert(result);
+        }
+    });
+    SetHeadValue("ccode",ccode);
+}
